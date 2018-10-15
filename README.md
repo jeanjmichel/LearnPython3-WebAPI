@@ -8,6 +8,8 @@ Open a terminal and goes to the project home folder:
 
 Now insert this commands in this sequence:
 
+>**Note:** if you are a Windows user you have disconsider when I wrote "python3" in this commands below and use just "python" (eg.: LearnPython3-WebAPI$ python -m venv venv). The same have be done with "LearnPython3-WebAPI$ source venv/bin/activate", disconsider "source" and call just "LearnPython3-WebAPI$ venv/bin/activate".
+
     LearnPython3-WebAPI$ python3 -m venv venv
     LearnPython3-WebAPI$ source venv/bin/activate
 

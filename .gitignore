@@ -5,4 +5,3 @@ venv/
 *.pyc
 pyvenv.cfg
 pip-selfcheck.json
-README.md
