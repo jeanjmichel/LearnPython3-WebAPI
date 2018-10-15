@@ -10,6 +10,7 @@ Now insert this commands in this sequence:
 
 >**Note:** if you are a Windows user you have disconsider when I wrote "python3" in this commands below and use just "python" (eg.: LearnPython3-WebAPI$ python -m venv venv). The same have be done with "LearnPython3-WebAPI$ source venv/bin/activate", disconsider "source" and call just "LearnPython3-WebAPI$ venv/bin/activate".
 
+    LearnPython3-WebAPI$ python3 pip install virtualenv
     LearnPython3-WebAPI$ python3 -m venv venv
     LearnPython3-WebAPI$ source venv/bin/activate
 
@@ -20,7 +21,7 @@ Paying attention you will note that not your terminal (venv) before the folder p
 
 Everything installed now will be in this environment.
 
-    LearnPython3-WebAPI$ pip install --upgrade pip
+    LearnPython3-WebAPI$ pip install --upgrade pip (optional)
     LearnPython3-WebAPI$ pip install -U flask
     LearnPython3-WebAPI$ pip install -U jwt
     LearnPython3-WebAPI$ pip install -U pylint
