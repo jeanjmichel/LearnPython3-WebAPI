@@ -10,7 +10,7 @@ Now insert this commands in this sequence:
 
 >**Note:** if you are a Windows user you have disconsider when I wrote "python3" in this commands below and use just "python" (eg.: LearnPython3-WebAPI$ python -m venv venv). The same have be done with "LearnPython3-WebAPI$ source venv/bin/activate", disconsider "source" and call just "LearnPython3-WebAPI$ venv/bin/activate".
 
-    LearnPython3-WebAPI$ python3 pip install virtualenv
+    LearnPython3-WebAPI$ pip install virtualenv
     LearnPython3-WebAPI$ python3 -m venv venv
     LearnPython3-WebAPI$ source venv/bin/activate
 
@@ -25,23 +25,7 @@ Everything installed now will be in this environment.
     LearnPython3-WebAPI$ pip install -U flask
     LearnPython3-WebAPI$ pip install -U jwt
     LearnPython3-WebAPI$ pip install -U pylint
-
-Running this command you will see all libs installed:
-
-    LearnPython3-WebAPI$ pip freeze
-
-    asn1crypto==0.24.0
-    cffi==1.11.5
-    Click==7.0
-    cryptography==2.3.1
-    Flask==1.0.2
-    idna==2.7
-    itsdangerous==0.24
-    Jinja2==2.10
-    jwt==0.5.4
-    MarkupSafe==1.0
-    pycparser==2.19
-    six==1.11.0
-    Werkzeug==0.14.1
-
+    LearnPython3-WebAPI$ pip install -U mysql-connector
+    LearnPython3-WebAPI$ pip install -U rope
+    
 Let's go code now :)
