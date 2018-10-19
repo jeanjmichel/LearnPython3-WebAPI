@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, make_response
 import mysql.connector
 
 app = Flask(__name__)
+app.config['SECRET_SALT'] = 'anita'
 
 @app.route('/')
 def home():
