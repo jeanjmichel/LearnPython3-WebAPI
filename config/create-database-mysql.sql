@@ -1,6 +1,10 @@
 CREATE DATABASE API_PYTHON;
 USE API_PYTHON;
 
+/*
+ * Create and config initial database.
+ */
+
 CREATE TABLE USER (
   ID             BIGINT(20)  NOT NULL AUTO_INCREMENT,
   USERNAME       VARCHAR(50) NOT NULL,
