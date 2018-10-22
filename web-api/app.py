@@ -1,8 +1,27 @@
 from flask import Flask, jsonify, request, make_response
+from werkzeug.security import generate_password_hash, check_password_hash
+from flask_sqlalchemy import SQLAlchemy
+import jwt
+import datetime
 import mysql.connector
 
 app = Flask(__name__)
-app.config['SECRET_SALT'] = 'anita'
+app.config['SECRET_SALT'] = 'DDi8ZGBc9oiVHdfgorPzA8f2u6YcbuNiYQE064WXJb0idhR34u70iDj7yEJGc8kF'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:ush@11n07p@55!@localhost:3306/API_PYTHON'
+
+db = SQLAlchemy(app)
+db.init_app(app)
+
+class UserModel(db.Model):
+    __tablename__ = 'User'
+
+    id = db.Column('id', db.Integer, primary_key=True)
+    user_name = db.Column('username', db.String(50), unique=True)
+    first_name = db.Column('firstname', db.String(50))
+    last_name = db.Column('lastname', db.String(50))
+    password = db.Column('password', db.String(80))
+    gender = db.Column('gender', db.String(50))
+    active = db.Column('active', db.String(50))
 
 @app.route('/')
 def home():
@@ -10,35 +29,23 @@ def home():
 
 @app.route('/login')
 def login():
-    
-    config = {
-        'user': 'root',
-        'password': 'ush@11n07p@55!',
-        'host': 'localhost',
-        'database': 'API_PYTHON',
-        'raise_on_warnings': True
-    }
-
-    mysql_connection = mysql.connector.connect(**config)
-    
     authentication_data = request.authorization
     if not authentication_data or not authentication_data.username or not authentication_data.password:
         return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Authentication data required!"'})
-
-    query = ("SELECT u.Username ,u.FirstName ,u.LastName ,u.Active ,u.Password FROM User u "
-            "WHERE u.UserName = '%s'")
-
-    print(authentication_data.username)
     
-    cursor_user = mysql_connection.cursor()
-    cursor_user.execute(query, (authentication_data.username))
+    user = UserModel.query.filter_by(user_name=authentication_data.username).first()
+    base_datetime = datetime.datetime.now()
     
-    for (Username, FirstName, LastName, Active, Password) in cursor_user:
-        print("Username: {0} First Name: {1} Last Name: {2} Password: {3} Active: {4} ".format(Username, FirstName, LastName, Active, Password))
+    if not user:
+        return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Authentication data required!"'})
 
-    cursor_user.close()
-    mysql_connection.close()
+    if check_password_hash(user.password, authentication_data.password):
+        token = jwt.encode({'user_id' : user.id,
+                            'iat' : base_datetime,
+                            'exp' : base_datetime + datetime.timedelta(minutes=30)}, app.config['SECRET_SALT'])
 
-    return jsonify({"message":"Authenticating user..."})
+        return jsonify({'token' : token.decode('UTF-8')})
+    
+    return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Authentication data required!"'})
 
-app.run()
+app.run(debug=True)

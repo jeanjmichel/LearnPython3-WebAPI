@@ -7,7 +7,7 @@ CREATE TABLE USER (
   FIRSTNAME      VARCHAR(50) NOT NULL,
   MIDDLEINITIALS VARCHAR(10)     NULL,
   LASTNAME       VARCHAR(50) NOT NULL,
-  PASSWORD       VARCHAR(64) NOT NULL,
+  PASSWORD       VARCHAR(99) NOT NULL,
   GENDER         VARCHAR(1)      NULL,
   ACTIVE         VARCHAR(1)  NOT NULL,
   CONSTRAINT USER_PK PRIMARY KEY (ID),
@@ -61,12 +61,13 @@ INSERT INTO ElectronicAddressType (Id ,AddressType ,Active)
 INSERT INTO ElectronicAddressType (Id ,AddressType ,Active)
                            VALUES ( 0 ,'INSTAGRAM' ,'Y');
 
+/* Password is senha123 */
 INSERT INTO USER VALUES ( 0     ,'SYSTEM' ,'SYSTEM' 
-                         ,null  ,'ADMIN'  ,'senha123'
+                         ,null  ,'ADMIN'  ,'sha256$Zy12okIT$0c64237f3b2ae892731a164098b3d56ab2412710c22da1f434cb086523b4ad5b'
                          ,null  ,'Y');
 
 INSERT INTO USER VALUES ( 0     ,'JMICHEL' ,'JEAN' 
-                         ,'J'   ,'MICHEL'  ,'senha123'
+                         ,'J'   ,'MICHEL'  ,'sha256$Zy12okIT$0c64237f3b2ae892731a164098b3d56ab2412710c22da1f434cb086523b4ad5b'
                          ,'M'  ,'Y');
 
 INSERT INTO UserElectronicAddress VALUES ( 0 ,1 ,1 /* E-mail */

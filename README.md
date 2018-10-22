@@ -23,6 +23,7 @@ Everything installed now will be in this environment.
 
     LearnPython3-WebAPI$ pip install --upgrade pip (optional)
     LearnPython3-WebAPI$ pip install -U flask
+    LearnPython3-WebAPI$ pip install -U flask_sqlalchemy
     LearnPython3-WebAPI$ pip install -U PyJWT
     LearnPython3-WebAPI$ pip install -U pylint
     LearnPython3-WebAPI$ pip install -U mysql-connector
