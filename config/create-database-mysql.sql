@@ -97,7 +97,7 @@ INSERT INTO UserElectronicAddress VALUES ( 0 ,2 ,7 /* Instagram */
 
 SELECT u.Username ,u.FirstName ,u.LastName ,u.Active ,u.password
   FROM User u
- WHERE u.UserName = 'JMICHEL'                                        
+ WHERE u.UserName = 'JMICHEL';                                       
 
   SELECT Id, AddressType, Active
     FROM ElectronicAddressType eat
