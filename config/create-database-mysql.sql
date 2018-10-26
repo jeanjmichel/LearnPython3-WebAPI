@@ -95,6 +95,44 @@ INSERT INTO UserElectronicAddress VALUES ( 0 ,2 ,6 /* About.me */
 INSERT INTO UserElectronicAddress VALUES ( 0 ,2 ,7 /* Instagram */
                                           ,'jeanjmichel' ,'Y');
 
+CREATE TABLE POMODOROACTIVITIES (
+  ID            BIGINT(20)   NOT NULL AUTO_INCREMENT,
+  USERID        BIGINT(20)   NOT NULL,
+  ACTIVITY      VARCHAR(400) NOT NULL,
+  CYCLE         INT          NOT NULL,
+  PAUSED        INT              NULL,
+  STARTDATE     DATETIME     NOT NULL,
+  ENDDATE       DATETIME     NOT NULL,
+  NOTE          VARCHAR(1000)    NULL,
+  CONSTRAINT POMODOROACTIVITIES_PK PRIMARY KEY (ID)
+) ENGINE=InnoDB;
+
+ALTER TABLE POMODOROACTIVITIES ADD CONSTRAINT POMODOROACTIVITIES_USER_FK FOREIGN KEY (USERID) REFERENCES USER (ID) ON DELETE RESTRICT;
+ALTER TABLE POMODOROACTIVITIES ADD INDEX USERID_IDX (USERID);
+ALTER TABLE POMODOROACTIVITIES ADD INDEX STARTDATE_IDX (STARTDATE);
+ALTER TABLE POMODOROACTIVITIES ADD INDEX ENDDATE_IDX (ENDDATE);
+
+INSERT INTO POMODOROACTIVITIES ( USERID ,ACTIVITY ,CYCLE
+                                ,PAUSED ,STARTDATE ,ENDDATE
+                                ,NOTE)
+                        VALUES ( 2    ,'Create SQL script to create all Pomodoro feature' ,1
+                                ,0    ,'2018-10-27 09:25:33'                              ,'2018-10-27 09:50:33'
+                                ,NULL);
+
+INSERT INTO POMODOROACTIVITIES ( USERID ,ACTIVITY  ,CYCLE
+                                ,PAUSED ,STARTDATE ,ENDDATE
+                                ,NOTE)
+                        VALUES ( 2    ,'Create SQL script to create all Pomodoro feature' ,2
+                                ,0    ,'2018-10-27 10:02:27'                              ,'2018-10-27 10:27:27'
+                                ,'Was created an script with the statements to create the table, indexes, foreign keys and insert master data.');
+
+  SELECT  pdac.Id      ,pdac.UserId ,pdac.Activity 
+         ,pdac.Cycle   ,pdac.Paused ,pdac.StartDate 
+         ,pdac.EndDate ,pdac.Note     
+    FROM PomodoroActivities pdac
+   WHERE pdac.UserId = 2
+ORDER BY pdac.Id;
+
 SELECT u.Username ,u.FirstName ,u.LastName ,u.Active ,u.password
   FROM User u
  WHERE u.UserName = 'JMICHEL';                                       
